@@ -16,13 +16,8 @@ class Categorie
     private $id = null;
 
     #[ORM\Column(type:'string', length: 10, nullable: false, options:['collation' => 'utf8_general_ci'])]
-    private $homme;
+    private $categorie;
 
-    #[ORM\Column(type: 'string', length: 10, nullable:false, options:['collation' => 'utf8_general_ci'])]
-    private $femme;
-
-    #[ORM\Column(type: 'string', length: 10, nullable:false, options:['collation' => 'utf8_general_ci'])]
-    private $enfant;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
     private Collection $produits;
@@ -44,41 +39,18 @@ class Categorie
         return $this;
     }
 
-    public function getHomme(): ?string
+    public function getCategorie(): ?string
     {
-        return $this->homme;
+        return $this->categorie;
     }
 
-    public function setHomme(string $homme): static
+    public function setCategorie(string $categorie): static
     {
-        $this->homme = $homme;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
-    public function getFemme(): ?string
-    {
-        return $this->femme;
-    }
-
-    public function setFemme(string $femme): static
-    {
-        $this->femme = $femme;
-
-        return $this;
-    }
-
-    public function getEnfant(): ?string
-    {
-        return $this->enfant;
-    }
-
-    public function setEnfant(string $enfant): static
-    {
-        $this->enfant = $enfant;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Produit>

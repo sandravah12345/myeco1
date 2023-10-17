@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231012215740 extends AbstractMigration
+final class Version20231017113604 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,12 @@ final class Version20231012215740 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE panier ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE panier ADD CONSTRAINT FK_24CC0DF2A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_24CC0DF2A76ED395 ON panier (user_id)');
+        $this->addSql('ALTER TABLE categorie ADD categorie VARCHAR(10) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, DROP homme, DROP femme, DROP enfant');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE panier DROP FOREIGN KEY FK_24CC0DF2A76ED395');
-        $this->addSql('DROP INDEX UNIQ_24CC0DF2A76ED395 ON panier');
-        $this->addSql('ALTER TABLE panier DROP user_id');
+        $this->addSql('ALTER TABLE categorie ADD femme VARCHAR(10) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, ADD enfant VARCHAR(10) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`, CHANGE categorie homme VARCHAR(10) CHARACTER SET utf8 NOT NULL COLLATE `utf8_general_ci`');
     }
 }
