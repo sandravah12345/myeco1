@@ -92,7 +92,7 @@ class Produit
 
     public function getImage(): ?string
     {
-        return $this->image;
+        return $this->image ? 'assets/img/produits/' . $this->image : '';
     }
 
     public function setImage(string $image): static

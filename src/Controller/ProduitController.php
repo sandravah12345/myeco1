@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProduitController extends AbstractController
 {
 
+    
     private $manager;
 
     public function __construct(ManagerRegistry $doctrine)
@@ -55,5 +57,86 @@ class ProduitController extends AbstractController
             'controller_name' => 'ProduitController',
             'form' => $form->createView(),
         ]);
+
+        
     }
+    #[Route('/produit/affichage', name: 'app_affichage')]
+    public function affichage(): Response
+    {
+
+
+        $produits = $this->manager->getRepository(Produit::class)->findAll();
+
+        return $this->render('produit/affichage.html.twig', [
+            "produits"=> $produits
+
+
+        ]);
+    } 
+
+    #[Route('/produit/homme', name: 'app_homme')]
+    public function affichageHomme(EntityManagerInterface $entityManager): Response
+    {
+
+
+        $repository = $entityManager->getRepository(Produit::class);
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.categorie = :categorieId')
+            ->setParameter('categorieId',3)
+            ->getQuery();
+
+            $produits = $query->getResult();
+
+        return $this->render('produit/homme.html.twig', [
+            "produits"=> $produits
+
+
+        ]);
+    } 
+
+    #[Route('/produit/femme', name: 'app_femme')]
+    public function affichageFemme(EntityManagerInterface $entityManager): Response
+    {
+
+
+        $repository = $entityManager->getRepository(Produit::class);
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.categorie = :categorieId')
+            ->setParameter('categorieId',4)
+            ->getQuery();
+
+            $produits = $query->getResult();
+
+        return $this->render('produit/femme.html.twig', [
+            "produits"=> $produits
+
+
+        ]);
+    } 
+
+    #[Route('/produit/enfant', name: 'app_enfant')]
+    public function affichageEnfant(EntityManagerInterface $entityManager): Response
+    {
+
+
+        $repository = $entityManager->getRepository(Produit::class);
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.categorie = :categorieId')
+            ->setParameter('categorieId',5)
+            ->getQuery();
+
+            $produits = $query->getResult();
+
+        return $this->render('produit/enfant.html.twig', [
+            "produits"=> $produits
+
+
+        ]);
+    } 
+
 }
+
+
+
+
+
