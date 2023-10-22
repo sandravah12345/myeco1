@@ -1,26 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}This is Sparta!{% endblock %}
-
+{% block title %}Hello ProduitController!
+{% endblock %}
 
 {% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-
-
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>myEcoMontre {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/sandravahtel/myecomontre1/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/sandravahtel/myecomontre1/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+	This friendly message is coming from:
+	<ul>
+		<li>Your controller at
+			<code>
+				<a href="{{ '/Users/sandravahtel/Desktop/certif/myecomontre1/src/Controller/ProduitController.php'|file_link(0) }}">src/Controller/ProduitController.php</a>
+			</code>
+		</li>
+		<li>Your template at
+			<code>
+				<a href="{{ '/Users/sandravahtel/Desktop/certif/myecomontre1/templates/produit/affichage.html.twig'|file_link(0) }}">templates/produit/index.html.twig</a>
+			</code>
+		</li>
+	</ul>
 </div>
-{% include ("/template-parts/footer.html.twig") %}
-{% endblock %}
- 
+
+      <div class="container text-center">
+		<h1 class="break">Bienvenue chez MyEcoMontre, où le style rencontre la durabilité !</h1>
+      </div>
+		<section>
+			<div class="video">
+				<video controls autoplay muted width="50%" src="{{ asset('assets/video/videomontre.mp4') }}"></video>
+			</div>
+			<div class="example-wrapper">
+				<div class="content">
+					<p class="content-paragraph">Chez MyEco Montre, nous croyons que le temps est précieux tout comme notre planète. C'est pourquoi nous avons sélectionné avec soin une superbe collection de montres respectueuses de l'environnement qui vous permettent non seulement de suivre l'heure, mais aussi de contribuer de manière positive à notre planète..</p>
+					<p>Notre sélection de montres combine un design de pointe avec les derniers matériaux et procédés de fabrication respectueux de l'environnement. Que vous soyez un précurseur de la mode ou quelqu'un qui attache de l'importance aux choix éthiques et durables, nous avons la montre parfaite pour vous.</p>
+				</div>
+
+				<div class="card-group">
+					<div class="card">
+						<img class="card-img-top" src="{{ asset('assets/img/1.jpeg') }}" alt="Homme1">
+						<div class="card-body">
+							<h5 class="card-title">Matériaux respectueux de l'environnement :</h5>
+							<p class="card-text">
+								<small class="text-muted">Nos montres sont fabriquées à partir de matériaux durables tels que le bambou, les métaux recyclés et le cuir sans cruauté, réduisant ainsi l'empreinte carbone de la fabrication traditionnelle de montres..</small>
+							</p>
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="{{ asset('assets/img/2.png') }}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Stylées et polyvalentes :</h5>
+							<p class="card-text">
+								<small class="text-muted">
+									Des designs classiques aux styles modernes et tendance, notre collection s'adresse à tous les goûts et occasions. Que ce soit pour une sortie décontractée ou un événement formel, nous avons la montre qui correspond à votre style</small>
+							</p>
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="{{ asset('assets/img/3.png') }}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">
+								<small class="text-muted">Chaque achat chez MyEco Montre contribue à notre mission d'un monde plus vert. Nous soutenons fièrement les initiatives environnementales et les organisations dédiées à la préservation de notre planète.</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+
+	{% endblock %}

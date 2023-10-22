@@ -24,9 +24,9 @@
      
 
     {% for produit in produits %}
-<div class="col-md-4">
+<div class="col-md-4 ">
                 <div class="card mb-4">
-                    <img src="{{ asset(produit.image) }}" alt="{{ produit.name }}" class="card-img-top"> 
+                    <img src="{{ asset(produit.image) }}" alt="{{ produit.name }}" class="card-img-top align-item-center"> 
                     <div class="card-body">
                         <h5 class="card-title">{{ produit.name }}</h5>
                         <p class="card-text">{{ produit.description }}</p>

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a href="{{ path('app_modify_user', {'id': app.user.id }) }}">
+			<button type="submit" class="btn btn-primary">modify</button>
+		</a>
+
+{% endblock %}
