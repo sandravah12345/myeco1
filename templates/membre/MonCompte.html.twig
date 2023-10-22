@@ -1,6 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+	  <td>{{ app.user.nom }}</td>
+      <th scope="col">prenom</th>
+	  <td>{{ app.user.prenom }}</td>
+      <th scope="col">email</th>
+	  <td>{{ app.user.email }}</td>
+    </tr>
+  </thead>
+</table>
 <a href="{{ path('app_modify_user', {'id': app.user.id }) }}">
 			<button type="submit" class="btn btn-primary">modify</button>
 		</a>

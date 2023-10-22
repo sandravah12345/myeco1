@@ -40,9 +40,11 @@
                     </div>
                 </div>
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_modif', {'id': produit.id }) }}">
+			<button type="submit" class="btn btn-primary">modify</button>
+		        </a>
         {% endfor %}
     </div>
 </div>      
-
-  
 {% endblock %}

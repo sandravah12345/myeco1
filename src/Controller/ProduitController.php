@@ -133,8 +133,26 @@ class ProduitController extends AbstractController
 
         ]);
     } 
+    #[Route('/produit/modification/{id}', name: 'app_modif')]
+    public function modifyProduit(Produit $produit, Request $request, EntityManagerInterface $entityManager): Response {
 
-}
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($produits);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_produit');
+        }
+
+        return $this->render('produit/modification.html.twig',[
+            'form' => $form->createView(),
+            'produit' => $produit,
+            
+        ]);
+    }
+    } 
 
 
 

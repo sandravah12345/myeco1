@@ -25,8 +25,10 @@ class MembreController extends AbstractController
     #[Route('/membre', name: 'app_membre')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         return $this->render('membre/MonCompte.html.twig', [
-            'controller_name' => 'MembreController',
+            
         ]);
     }
 

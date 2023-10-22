@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h2 class= "text-center">Modifier produit</h2>
+    <form class="container w-50 mt-4 mb-5"> 
+	<div class="row">
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.price) }}
+        {{ form_row(form.image) }}
+        {{ form_row(form.stock) }}
+        {{ form_row(form.categorie) }}
+        {{ form_end(form) }}
+    </div>
+    </form>
+{% endblock %}
+
