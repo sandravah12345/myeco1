@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Form\CategoriemodifType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,4 +38,23 @@ private $manager;
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/categorie/modification/{id}', name: 'app_categorie_modif')]
+    public function modifyCategorie(Categorie $categorie, Request $request, EntityManagerInterface $entityManager): Response {
+
+        $form = $this->createForm(CategoriemodifType::class, $categorie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_categorie');
+        }
+
+        return $this->render('categorie/modification.html.twig',[
+            'form' => $form->createView(),
+            'categorie' => $categorie,
+        
+        ]);
 }
+} 

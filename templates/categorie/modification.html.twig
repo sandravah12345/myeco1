@@ -20,12 +20,15 @@
 	<div class="example-wrapper">
 		<form class="container w-50 mt-4 mb-5">
 			<div class="row">
-				<h1>Ajoutez la categorie</h1>
+				<h1>Modify</h1>
 
 				{{ form_start(form)}}
 				<br>
 				{{ form_end(form)}}
 				<br>
+				<a href="{{ path('app_categorie_modif', {'id': categorie.id }) }}">
+					<button type="submit" class="btn btn-primary">modify</button>
+				</a>
 			</div>
 		</div>
 	{% endblock %}
