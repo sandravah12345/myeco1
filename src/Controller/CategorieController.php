@@ -26,9 +26,14 @@ private $manager;
     {
 
         $categorie = new Categorie;
-        $form = $this->createForm(CategorieType::class, $categorie);
+        $form = $this->createForm(CategorieType::class, $categorie, [
+            'method' => 'GET',
+        ]);
         $form->handleRequest($request);
+      
         if ($form->isSubmitted() && $form->isValid()) {
+           
+            
             $this->manager->persist($categorie);
             $this->manager->flush();
             return $this->redirectToRoute('app_categorie', []);
@@ -38,10 +43,23 @@ private $manager;
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('categorie/details', name: 'app_categorie_details')]
+    public function AffichageCategorie()
+    {
+        $categorie = $this->manager->getRepository(Categorie::class)->findAll();
+
+        return $this->render('categorie/details.html.twig', [
+            'categories' => $categorie
+        ]);
+
+    }
     #[Route('/categorie/modification/{id}', name: 'app_categorie_modif')]
     public function modifyCategorie(Categorie $categorie, Request $request, EntityManagerInterface $entityManager): Response {
 
-        $form = $this->createForm(CategoriemodifType::class, $categorie);
+        $form = $this->createForm(CategoriemodifType::class, $categorie,[
+            'method'=>'GET',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){

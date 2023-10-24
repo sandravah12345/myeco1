@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class ProduitController extends AbstractController
 {
@@ -140,7 +142,7 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $entityManager->persist($produits);
+            $entityManager->persist($produit);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_produit');
@@ -152,7 +154,22 @@ class ProduitController extends AbstractController
             
         ]);
     }
-    } 
+
+    // #[Route('/produit/delete/{id}', name: 'app_delete_produit')]
+    // public function deleteProduit(int $id, Request $request): Response
+    // {
+    //     if ($this->isCsrfTokenValid('supprimer', $request->query->get('token', ''))) {
+    //     if ($id) {
+    //         $produit  = $this->manager->getRepository(Produit::class)->find($id);
+    //         $this->manager->remove($produit);
+    //         $this->manager->flush();
+    //     }
+
+    //     return $this->redirectToRoute('app_produit');    } else {
+    //         throw new BadRequestException('Token CSRF invalide.');
+    //     }
+    // }
+     } 
 
 
 

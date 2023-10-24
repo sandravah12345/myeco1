@@ -44,7 +44,13 @@
                 <a href="{{ path('app_modif', {'id': produit.id }) }}">
 			<button type="submit" class="btn btn-primary">modify</button>
 		        </a>
+        {% endif %}  
         {% endfor %}
+            {# {% if is_granted('ROLE_ADMIN') %}
+                {# <a href="{{ path('app_delete_produit', {'id': produit.id }) }}">
+			<button type="delete" class="btn btn-primary">delete</button>
+		        </a> #}
+
     </div>
 </div>      
 {% endblock %}
