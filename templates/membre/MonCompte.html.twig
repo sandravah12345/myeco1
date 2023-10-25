@@ -2,21 +2,38 @@
 
 {% block body %}
 
-<table class="table">
+<table class="table table-striped"> 
   <thead>
-    <tr>
+    <tr class= "table-success">
       <th scope="col">#</th>
       <th scope="col">Nom</th>
-	  <td>{{ app.user.nom }}</td>
-      <th scope="col">prenom</th>
-	  <td>{{ app.user.prenom }}</td>
-      <th scope="col">email</th>
-	  <td>{{ app.user.email }}</td>
+      <th scope="col">Prenom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Postal code</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
     </tr>
   </thead>
-</table>
-<a href="{{ path('app_modify_user', {'id': app.user.id }) }}">
-			<button type="submit" class="btn btn-primary">modify</button>
-		</a>
+  <tbody>
+    <tr>
+      
+      
+      <th scope="row"></th>
+      <td>{{ app.user.nom }}</td>
+      <td>{{ app.user.prenom }}</td>
+      <td>{{ app.user.email }}</td>
+      <td>{{ app.user.adresse }}</td>
+      <td>{{ app.user.ville }}</td>
+      <td>{{ app.user.postalcode }}</td>
+      <td><a href="{{ path('app_modify_user', {'id': app.user.id }) }}">
+			<button type="submit" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></button>
+		</a></td>
+    <td><a class="btn btn-danger" href="{{ path('app_delete_membre', {'id': app.user.id }) }}?token={{ csrf_token('supprimer') }}" role="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    </tr>
+    </tbody>
+    </table>
 
 {% endblock %}
+

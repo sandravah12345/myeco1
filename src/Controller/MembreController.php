@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Categorie;
 use App\Form\ModificationUserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class MembreController extends AbstractController
 {
@@ -52,6 +54,20 @@ class MembreController extends AbstractController
             'user' => $user,
 
         ]);
+    }
+    #[Route('/membre/delete/{id}', name: 'app_delete_membre')]
+    public function deleteUser(int $id, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('supprimer', $request->query->get('token', ''))) {
+        if ($id) {
+            $user  = $this->manager->getRepository(User::class)->find($id);
+            $this->manager->remove($user);
+            $this->manager->flush();
+        }
+
+        return $this->redirectToRoute('app_membre');    } else {
+            throw new BadRequestException('Token CSRF invalide.');
+        }
     }
 }
 
