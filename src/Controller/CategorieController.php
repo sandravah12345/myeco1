@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class CategorieController extends AbstractController
 {
@@ -75,4 +76,19 @@ private $manager;
         
         ]);
 }
+
+#[Route('/categorie/delete/{id}', name: 'app_delete_categorie')]
+    public function deleteCategorie(int $id, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('supprimer', $request->query->get('token', ''))) {
+        if ($id) {
+            $categorie  = $this->manager->getRepository(Categorie::class)->find($id);
+            $this->manager->remove($categorie);
+            $this->manager->flush();
+        }
+
+        return $this->redirectToRoute('app_categorie');    } else {
+            throw new BadRequestException('Token CSRF invalide.');
+        }
+    }
 } 
