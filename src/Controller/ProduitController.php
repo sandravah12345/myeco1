@@ -155,20 +155,20 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    // #[Route('/produit/delete/{id}', name: 'app_delete_produit')]
-    // public function deleteProduit(int $id, Request $request): Response
-    // {
-    //     if ($this->isCsrfTokenValid('supprimer', $request->query->get('token', ''))) {
-    //     if ($id) {
-    //         $produit  = $this->manager->getRepository(Produit::class)->find($id);
-    //         $this->manager->remove($produit);
-    //         $this->manager->flush();
-    //     }
+    #[Route('/produit/delete/{id}', name: 'app_delete_produit')]
+    public function deleteProduit(int $id, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('supprimer', $request->query->get('token', ''))) {
+        if ($id) {
+            $produit  = $this->manager->getRepository(Produit::class)->find($id);
+            $this->manager->remove($produit);
+            $this->manager->flush();
+        }
 
-    //     return $this->redirectToRoute('app_produit');    } else {
-    //         throw new BadRequestException('Token CSRF invalide.');
-    //     }
-    // }
+        return $this->redirectToRoute('app_produit');    } else {
+            throw new BadRequestException('Token CSRF invalide.');
+        }
+    }
      } 
 
 
