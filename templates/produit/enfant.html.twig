@@ -15,7 +15,7 @@
                         <h5 class="card-title">{{ produit.name }}</h5>
                         <p class="card-text">{{ produit.description }}</p>
                         <div class="d-flex justify-content-between align-item-center">
-                            <a href="#" class="btn btn-dark">Panier</a>
+                            <a href="{{path('app_ajouter_panier', {'produitId': produit.id}) }}" class="btn btn-dark">Panier</a>
                             <span class="h5 mt-auto">{{ produit.price }} €</span>
                             {% if produit.stock > 1 %}
                              <p>disponible</p> 

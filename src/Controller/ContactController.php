@@ -34,7 +34,7 @@ class ContactController extends AbstractController
             $this->entityManager->flush();
 
             $this->addFlash('success', 'Your message has been sent.'); // Add a flash message
-            return $this->redirectToRoute('app_home', []);
+            return $this->redirectToRoute('app_contact', []);
         }
 
         return $this->render('contact/index.html.twig', [

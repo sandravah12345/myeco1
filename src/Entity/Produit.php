@@ -34,12 +34,9 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Panier::class)]
-    private Collection $panier;
-
     public function __construct()
     {
-        $this->panier = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -126,33 +123,5 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection<int, Panier>
-     */
-    public function getPanier(): Collection
-    {
-        return $this->panier;
-    }
-
-    public function addPanier(Panier $panier): static
-    {
-        if (!$this->panier->contains($panier)) {
-            $this->panier->add($panier);
-            $panier->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removePanier(Panier $panier): static
-    {
-        if ($this->panier->removeElement($panier)) {
-            // set the owning side to null (unless already changed)
-            if ($panier->getProduit() === $this) {
-                $panier->setProduit(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

@@ -41,7 +41,7 @@
           <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Mon panier</a>
+          <a class="nav-link" href="{{ path('app_panier') }}">Mon panier</a>
         </li>
       </ul>
     {% else %}
@@ -53,7 +53,7 @@
           <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Mon panier</a>
+          <a class="nav-link" href="{{ path('app_panier') }}">Mon panier</a>
         </li>
       </ul>
     {% endif %}
