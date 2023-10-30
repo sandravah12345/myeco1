@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Hello PanierController!{% endblock %}
 
@@ -10,17 +10,63 @@
     <p>Votre panier est vide.</p>
 {% else %}
     <ul>
+     {{dump(panier)}}
         {# {% for productId, quantity in panier %} #}
-        {% for produit in panier %}
+        {# {% for produit in panier %}
 
         {# {% set produit = produit[productId]%} #}
 
-            <li>{{ produit.nom }}</li>
+            {# <li>{{ produit.nom }}</li>
             <li>{{ produit.prix }}</li>
-            <li>{{ produit.quantite }}</li>
+            <li>{{ produit.quantite }}</li> #}
 
-        {% endfor %}
+        {# {% endfor %}
     </ul>
-{% endif %}
+{% endif %} #}
+{# </div> #} 
+{# {% endblock %} #} 
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier{% endblock %}
+
+{% block body %}
+    <h1>Votre Panier</h1>
+    {% if panier is empty %}
+        <p>Votre panier est vide.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in panier %}
+                    <tr>
+                        <td>{{ produit.nom }}</td>
+                        <td>{{ produit.prix }} €</td>
+                        <td>{{ produit.quantite }}</td>
+                        <td>{{ produit.prix * produit.quantite }} €</td>
+                        <td>
+                            <a href="" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <p>Total du panier : </p>
+            <a href="" class="btn btn-success">Passer au paiement</a>
+            <a href="" class="btn btn-warning">Vider le panier</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
+
+
+

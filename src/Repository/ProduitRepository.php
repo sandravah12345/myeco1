@@ -20,15 +20,34 @@ class ProduitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produit::class);
     }
-    public function findByIds(array $productIds)
-    {
-    return $this->createQueryBuilder('p')
-        ->where('p.id IN (:ids)')
-        ->setParameter('ids', $productIds)
-        ->getQuery()
-        ->getResult();
-}
+//     public function findByIds(array $productIds)
+//     {
+//     return $this->createQueryBuilder('p')
+//         ->where('p.id IN (:ids)')
+//         ->setParameter('ids', $productIds)
+//         ->getQuery()
+//         ->getResult();
+// }
 
+// public function findByIds(array $productIds)
+// {
+//     if (empty($result)) {
+//         // Redirect to a specific page when the result is empty
+//         return $this->redirectToRoute('app_panier');
+//     }
+
+//     $result = $this->createQueryBuilder('p')
+//         ->where('p.id IN (:ids)')
+//         ->setParameter('ids', $productIds)
+//         ->getQuery()
+//         ->getResult();
+
+//     // Check if the result is empty
+    
+
+//     // Return the result when it's not empty
+//     return $result;
+// }
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
@@ -53,4 +72,7 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
 }
