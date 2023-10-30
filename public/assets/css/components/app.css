@@ -44,3 +44,7 @@ h1 {
 font-family: 'Roboto', sans-serif;
 }
 
+.static 
+{
+    border: 2rem solid ;
+    }

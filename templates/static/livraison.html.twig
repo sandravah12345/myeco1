@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Livraison {% endblock %}
+
+{% block body %}
+
+ <h2>Expédition et livraison</h2>
+    
+        <div class="border"></div>
+        <div class="about-section-row">
+        <div class="about-section-col">
+        <div class="static">
+            <p>MyEco Montre a pour objectif est de vous assurer que vous recevrez votre commande le plus rapidement possible. Nos produits sont livrés en France métropolitaine, à Monaco, en Corse et dans les Territoires d'Outre-Mer. Les livraisons en France Métropolitaine sont assurées soit par Mondial Relay, soit Chronopost ou soit par Colissimo domicile sans signature. La livraison en point relais, très appréciée de nos clients, est également mise en place chez MyEco Montre. Pour cela, il suffit lors de la commande, de définir un point de retrait proche de l'adresse de livraison, pour récupérer le colis lorsqu’il sera disponible. Il s’agit du moyen de livraison le plus économique. </p> <br>
+            <p>Attention, la livraison en point relais nécessite un déplacement pour aller chercher les colis, dans un délai de 14 jours maximum en général.</p>
+
+            <h4>Où puis-je recevoir ma commande et quel coût ?</h4>
+            <p>Deux options s’offrent à vous pour la livraison :</p>
+
+        <table class="tableau-livraison">
+            <thead>
+                <tr>
+                    <th>La destination</th>
+                    <th>Lieu de livraison et coût</th>
+                    <th>Livraison gratuite</th>
+                    <th>Délais de livraison</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>France métropolitaine</td>
+                    <td>Domicile: 5,95 € <br>
+                    Point relais UPS Access: 3,95 €</td>
+                    <td>À partir de 99 €</td>
+                    <td>24/48 heures</td>
+                    
+                </tr>
+                <tr>
+                    <td>Corse</td>
+                    <td>Domicile: 5,95 € <br>
+                        Point relais UPS Access: 3,95 €</td>
+                    <td>À partir de 99 €</td>
+                    <td>48/72 heures</td>
+                    
+                </tr>
+                <tr>
+                    <td>Monaco</td>
+                    <td>Domicile: 8,95 € <br>
+                        Point relais UPS Access: 3,95 €</td>
+                    <td>À partir de 129 €</td>
+                    <td>48/72 heures</td>
+                </tr>
+                <tr>
+                    <td>DOM-TOM</td>
+                    <td>Domicile: 5,95 € <br>
+                        Point relais UPS Access: 3,95 €</td>
+                    <td>À partir de 99 €</td>
+                    <td>3/4 jours (jours ouvrés)</td>
+                </tr>
+                
+            </tbody>
+        </table>
+</div>
+</section>
+
+<p>Nous envoyons la commande à l'adresse postale que vous indiquez, à condition que la destination soit en France métropolitaine, en Corse, à Monaco et les DOM-TOM. Nous ne livrons pas aux boîtes postales. <br>
+    <br>
+Si vous savez déjà que vous ne serez pas chez vous, vous pouvez récupérer votre commande dans n'importe quel point de collecte UPS Access. </p>
+<br>
+<br>
+
+<h4>Modalités de LIVRAISON</h4>
+<p>Le colis sera remis au CLIENT contre signature et sur présentation d’une pièce d’identité. <br>En cas d’absence, un avis de passage sera laissé au CLIENT afin de lui permettre d’aller chercher son colis dans un point relais proche de chez lui.</p>
+    
+
+	{% endblock %}
