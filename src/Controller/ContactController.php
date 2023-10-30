@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,49 +14,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
-    public function index(): Response
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
-        ]);
+        $this->entityManager = $entityManager;
     }
-    private $manager; 
-    
-    public function __construct(ManagerRegistry $doctrine)
-    {
-        $this->manager = $doctrine->getManager();
-    }
-    
+
     #[Route('/contact', name: 'app_contact')]
-    public function contact(Request $request)
+    public function contact(Request $request): Response
     {
-        $form = $this->createForm(ContactType::class);
+        $contact = new Contact(); // Create a new Contact entity
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Handle form submission
+            $this->entityManager->persist($contact);
+            $this->entityManager->flush();
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                // Handle form submission
-            }
-        
-            return $this->render('contact/index.html.twig', [
-                'form' => $form->createView(),
-            ]);
+            $this->addFlash('success', 'Your message has been sent.'); // Add a flash message
+            return $this->redirectToRoute('app_home', []);
         }
 
-//         if($this->getUser()) {
-//             $contact->setNom($this->getUser()->getNom())
-//                     ->setPrenom($this->getUser()->getPrenom())
-//                     ->setEmail($this->getUser()->getEmail());
-//         }
-
-//         if ($form->isSubmitted() && $form->isValid()) {
-//             $this->manager->persist($contact);
-//             $this->manager->flush();
-//             return $this->redirectToRoute('app_contact', []);
-//         }
-// }
+        return $this->render('contact/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
-
-
-
