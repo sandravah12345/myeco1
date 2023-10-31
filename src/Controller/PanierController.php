@@ -61,22 +61,55 @@ class PanierController extends AbstractController
      return $this->redirectToRoute('app_panier');
  }
 
+//  #[Route('/panier/supprimer/{produitId}', name: 'app_supprimer_panier')]
+//  public function supprimerDuPanier($produitId, SessionInterface $session)
+//  {
+//      $panier = $session->get('panier', []);
+ 
+//      // Check if the article is in the cart
+//      if (isset($panier[$produitId])) {
+//          // Remove the item from the cart
+//          unset($panier[$produitId]);
+         
+//      }
+ 
+//      $session->set('panier', $panier);
+ 
+//      return $this->redirectToRoute('app_panier');
+//  }
 
- 
- #[Route('/panier/supprimer/{produitId}', name: 'app_supprimer_panier')]
- public function supprimerDuPanier($produitId, SessionInterface $session)
- {
-     $panier = $session->get('panier', []);
- 
-     // Check if the article is in the cart
-     if (isset($panier[$produitId])) {
-         // Remove the item from the cart
-         unset($panier[$produitId]);
-     }
- 
-     $session->set('panier', $panier);
- 
-     return $this->redirectToRoute('app_panier');
- }
- 
+//  public function calculatePanierTotal(SessionInterface $session, ManagerRegistry $manager): float
+// {
+//     $panier = $session->get('panier', []);
+//     $total = 0.0;
+
+//     foreach ($panier as $produitId => $item) {
+//         // Retrieve the product's price from the database
+//         $produit = $manager->getManager()->getRepository(Produit::class)->find($produitId);
+
+//         if ($produit) {
+//             // Calculate the item total (price * quantity) and add it to the overall total
+//             $itemTotal = $produit->getPrice() * $item['quantite'];
+//             $total += $itemTotal;
+//         }
+//     }
+
+//     return $total;
+// }
+
+// public function total(SessionInterface $session, ManagerRegistry $manager): Response
+// {
+//     $this->denyAccessUnlessGranted('ROLE_USER');
+
+//     $panier = $session->get('panier', []);
+//     $total = $this->calculatePanierTotal($session, $manager);
+
+//     return $this->render('panier/index.html.twig', [
+//         'panier' => $panier,
+//         'total' => $total,
+//     ]);
+// }
+
+    
 }
+
