@@ -49,10 +49,10 @@
                     <tr>
                         <td>{{ produit.nom }}</td>
                         <td>{{ produit.prix }} €</td>
-                        <td>{{ produit.quantite }}</td>
+                        <td><a href="{{ path('app_augmenter_panier', {'produitId': produit.id }) }}" class="btn btn-success">+</a>{{ produit.quantite }}<a href="{{ path('app_diminuer_panier', {'produitId': produit.id }) }}" class="btn btn-warning">-</a></td>
                         <td>{{ produit.prix * produit.quantite }} €</td>
                         <td>
-                            <a href="" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ path('app_supprimer_panier', {'produitId': produit.id }) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -66,6 +66,7 @@
         </div>
     {% endif %}
 </div>
+
 {% endblock %}
 
 

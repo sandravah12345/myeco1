@@ -48,6 +48,7 @@ class PanierController extends AbstractController
          // Ajoutez les détails de l'article dans le panier
          if ($produit) {
              $panier[$produitId] = [
+                'id' => $produit->getId(),
                  'quantite' => 1,
                  'nom' => $produit->getName(),
                  'prix' => $produit->getPrice(),
@@ -61,22 +62,52 @@ class PanierController extends AbstractController
      return $this->redirectToRoute('app_panier');
  }
 
-//  #[Route('/panier/supprimer/{produitId}', name: 'app_supprimer_panier')]
-//  public function supprimerDuPanier($produitId, SessionInterface $session)
-//  {
-//      $panier = $session->get('panier', []);
+ #[Route('/panier/augmenter/{produitId}', name: 'app_augmenter_panier')]
+ public function augmenterAuPanier($produitId, SessionInterface $session,ManagerRegistry $manager)
+ {
+     $panier = $session->get('panier', []);
+
+     // Vérifiez si l'article est déjà dans le panier
+     if (isset($panier[$produitId])) {
+         $panier[$produitId]['quantite']++;
+     } 
+
+     $session->set('panier', $panier);
+
+     return $this->redirectToRoute('app_panier');
+ }
+
+ #[Route('/panier/diminuer/{produitId}', name: 'app_diminuer_panier')]
+ public function diminuerAuPanier($produitId, SessionInterface $session,ManagerRegistry $manager)
+ {
+     $panier = $session->get('panier', []);
+
+     // Vérifiez si l'article est déjà dans le panier
+     if (isset($panier[$produitId]) && $panier[$produitId]['quantite']>1) {
+         $panier[$produitId]['quantite']--;
+     } else {
+        unset($panier[$produitId]);
+        }
+     $session->set('panier', $panier);
+
+     return $this->redirectToRoute('app_panier');
+ }
+ #[Route('/panier/supprimer/{produitId}', name: 'app_supprimer_panier')]
+ public function supprimerDuPanier($produitId, SessionInterface $session)
+ {
+     $panier = $session->get('panier', []);
  
-//      // Check if the article is in the cart
-//      if (isset($panier[$produitId])) {
-//          // Remove the item from the cart
-//          unset($panier[$produitId]);
+     // Check if the article is in the cart
+     if (isset($panier[$produitId])) {
+         // Remove the item from the cart
+         unset($panier[$produitId]);
          
-//      }
+     }
  
-//      $session->set('panier', $panier);
+     $session->set('panier', $panier);
  
-//      return $this->redirectToRoute('app_panier');
-//  }
+     return $this->redirectToRoute('app_panier');
+ }
 
 //  public function calculatePanierTotal(SessionInterface $session, ManagerRegistry $manager): float
 // {
